@@ -38,6 +38,7 @@ async function main() {
 
   async function loadArticles() {
     const { data, error } = await supabase.from('article').select('*');
+    console.log('Loaded articles:', data);
 
     if (error) {
       articlesContainer.innerHTML = `<p>Błąd: ${error.message}</p>`;
@@ -168,7 +169,7 @@ el.innerHTML = `
 
     const { error } = await supabase
       .from('article')
-      .update({ title, subtitle, author, content, created_at })
+      .update({ title, subtitle, author, content, created_at})
       .eq('id', id);
 
     if (error) {
